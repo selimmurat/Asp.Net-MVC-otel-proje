@@ -1,0 +1,44 @@
+﻿<!-- AnaSayfa Slider ve Duyurular Partial View Oluşumu -->
+
+<section class="revolution-slider">
+    <div class="bannercontainer" >
+        <div class="banner" style="height:auto">
+            <ul >
+
+                @foreach (var item in Model.slider)
+                {
+                    <li data-transition="fade" data-slotamount="7" data-masterspeed="1500">
+                        @if (item.sliderFoto == null)
+                        {
+                            <img src="~/images/slides/1700x449.gif" style="opacity:0;" alt="slidebg1" data-bgfit="cover" data-bgposition="left bottom" data-bgrepeat="no-repeat">
+                        }
+                        else
+                        {
+                            <img src="data:image/png;base64,@System.Convert.ToBase64String(item.sliderFoto)" style="opacity:0;" alt="slidebg1" data-bgfit="cover" data-bgposition="left bottom" data-bgrepeat="no-repeat">
+                            <!-- Layers -->
+                            <!-- Layer 1 -->
+                            <div class="caption sft revolution-starhotel bigtext"
+                                 data-x="505"
+                                 data-y="30"
+                                 data-speed="700"
+                                 data-start="1700"
+                                 data-easing="easeOutBack">
+                                 @item.sliderBaslik 
+                            </div>
+                            <!-- Layer 2 -->
+                            <div class="caption sft revolution-starhotel smalltext"
+                                 data-x="605"
+                                 data-y="105"
+                                 data-speed="800"
+                                 data-start="1700"
+                                 data-easing="easeOutBack">
+                                <span>@item.sliderText</span>
+                            </div>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</section>
+

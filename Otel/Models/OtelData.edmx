@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OtelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bilgilendirme">
+          <Key>
+            <PropertyRef Name="bilgiID" />
+          </Key>
+          <Property Name="bilgiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adSoyad" Type="nvarchar" MaxLength="100" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="15" />
+          <Property Name="ePosta" Type="nvarchar" MaxLength="30" />
+          <Property Name="odaTur" Type="int" />
+          <Property Name="istekTarihi" Type="datetime" />
+          <Property Name="cevap" Type="nvarchar(max)" />
+          <Property Name="cevapTarihi" Type="datetime" />
+          <Property Name="mesaj" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Duyurular">
+          <Key>
+            <PropertyRef Name="duyuruID" />
+          </Key>
+          <Property Name="duyuruID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="duyuruBaslik" Type="nvarchar" MaxLength="255" />
+          <Property Name="duyuruDetay" Type="nvarchar(max)" />
+          <Property Name="duyuruTarih" Type="datetime" />
+          <Property Name="yayinTarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="musteriID" />
+          </Key>
+          <Property Name="musteriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteriAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="musteriSoyadi" Type="nvarchar" MaxLength="50" />
+          <Property Name="dogumTarihi" Type="date" />
+          <Property Name="cinsiyet" Type="int" />
+          <Property Name="telefon" Type="nchar" MaxLength="15" />
+          <Property Name="ePosta" Type="nchar" MaxLength="50" />
+          <Property Name="aciklama" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MusteriGorus">
+          <Key>
+            <PropertyRef Name="gorusID" />
+          </Key>
+          <Property Name="gorusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adSoyad" Type="nvarchar" MaxLength="100" />
+          <Property Name="gorus" Type="nvarchar(max)" />
+          <Property Name="tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Oda">
+          <Key>
+            <PropertyRef Name="odaNo" />
+          </Key>
+          <Property Name="odaNo" Type="int" Nullable="false" />
+          <Property Name="odaTur" Type="int" />
+        </EntityType>
+        <EntityType Name="OdaTur">
+          <Key>
+            <PropertyRef Name="turID" />
+          </Key>
+          <Property Name="turID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="turAdi" Type="nchar" MaxLength="20" />
+          <Property Name="turAdet" Type="int" />
+        </EntityType>
+        <EntityType Name="Rezervasyon">
+          <Key>
+            <PropertyRef Name="rezervID" />
+          </Key>
+          <Property Name="rezervID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteriID" Type="int" />
+          <Property Name="odaNo" Type="int" />
+          <Property Name="rezervTarih" Type="date" />
+          <Property Name="gunSayi" Type="int" />
+        </EntityType>
+        <EntityType Name="Slider">
+          <Key>
+            <PropertyRef Name="sliderID" />
+          </Key>
+          <Property Name="sliderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sliderFoto" Type="image" />
+          <Property Name="sliderBaslik" Type="nchar" MaxLength="30" />
+          <Property Name="sliderText" Type="nvarchar" MaxLength="200" />
+          <Property Name="baslangicTarihi" Type="datetime" />
+          <Property Name="bitisTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Bilgilendirme_OdaTur">
+          <End Role="OdaTur" Type="Self.OdaTur" Multiplicity="0..1" />
+          <End Role="Bilgilendirme" Type="Self.Bilgilendirme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdaTur">
+              <PropertyRef Name="turID" />
+            </Principal>
+            <Dependent Role="Bilgilendirme">
+              <PropertyRef Name="odaTur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oda_OdaTur">
+          <End Role="OdaTur" Type="Self.OdaTur" Multiplicity="0..1" />
+          <End Role="Oda" Type="Self.Oda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdaTur">
+              <PropertyRef Name="turID" />
+            </Principal>
+            <Dependent Role="Oda">
+              <PropertyRef Name="odaTur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rezervasyon_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1" />
+          <End Role="Rezervasyon" Type="Self.Rezervasyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriID" />
+            </Principal>
+            <Dependent Role="Rezervasyon">
+              <PropertyRef Name="musteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rezervasyon_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1" />
+          <End Role="Rezervasyon" Type="Self.Rezervasyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaNo" />
+            </Principal>
+            <Dependent Role="Rezervasyon">
+              <PropertyRef Name="odaNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OtelModelStoreContainer">
+          <EntitySet Name="Bilgilendirme" EntityType="Self.Bilgilendirme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Duyurular" EntityType="Self.Duyurular" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MusteriGorus" EntityType="Self.MusteriGorus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oda" EntityType="Self.Oda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OdaTur" EntityType="Self.OdaTur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rezervasyon" EntityType="Self.Rezervasyon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Slider" EntityType="Self.Slider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bilgilendirme_OdaTur" Association="Self.FK_Bilgilendirme_OdaTur">
+            <End Role="OdaTur" EntitySet="OdaTur" />
+            <End Role="Bilgilendirme" EntitySet="Bilgilendirme" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oda_OdaTur" Association="Self.FK_Oda_OdaTur">
+            <End Role="OdaTur" EntitySet="OdaTur" />
+            <End Role="Oda" EntitySet="Oda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rezervasyon_Musteri" Association="Self.FK_Rezervasyon_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rezervasyon_Oda" Association="Self.FK_Rezervasyon_Oda">
+            <End Role="Oda" EntitySet="Oda" />
+            <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OtelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bilgilendirme">
+          <Key>
+            <PropertyRef Name="bilgiID" />
+          </Key>
+          <Property Name="bilgiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adSoyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="odaTur" Type="Int32" />
+          <Property Name="istekTarihi" Type="DateTime" Precision="3" />
+          <Property Name="cevap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cevapTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="OdaTur1" Relationship="Self.FK_Bilgilendirme_OdaTur" FromRole="Bilgilendirme" ToRole="OdaTur" />
+          <Property Name="ePosta" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Duyurular">
+          <Key>
+            <PropertyRef Name="duyuruID" />
+          </Key>
+          <Property Name="duyuruID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="duyuruBaslik" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="duyuruDetay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="duyuruTarih" Type="DateTime" Precision="3" />
+          <Property Name="yayinTarih" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="musteriID" />
+          </Key>
+          <Property Name="musteriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteriSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dogumTarihi" Type="DateTime" Precision="0" />
+          <Property Name="cinsiyet" Type="Int32" />
+          <Property Name="telefon" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="ePosta" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Rezervasyon" Relationship="Self.FK_Rezervasyon_Musteri" FromRole="Musteri" ToRole="Rezervasyon" />
+        </EntityType>
+        <EntityType Name="MusteriGorus">
+          <Key>
+            <PropertyRef Name="gorusID" />
+          </Key>
+          <Property Name="gorusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adSoyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="gorus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Oda">
+          <Key>
+            <PropertyRef Name="odaNo" />
+          </Key>
+          <Property Name="odaNo" Type="Int32" Nullable="false" />
+          <Property Name="odaTur" Type="Int32" />
+          <NavigationProperty Name="OdaTur1" Relationship="Self.FK_Oda_OdaTur" FromRole="Oda" ToRole="OdaTur" />
+          <NavigationProperty Name="Rezervasyon" Relationship="Self.FK_Rezervasyon_Oda" FromRole="Oda" ToRole="Rezervasyon" />
+        </EntityType>
+        <EntityType Name="OdaTur">
+          <Key>
+            <PropertyRef Name="turID" />
+          </Key>
+          <Property Name="turID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="turAdi" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="turAdet" Type="Int32" />
+          <NavigationProperty Name="Bilgilendirme" Relationship="Self.FK_Bilgilendirme_OdaTur" FromRole="OdaTur" ToRole="Bilgilendirme" />
+          <NavigationProperty Name="Oda" Relationship="Self.FK_Oda_OdaTur" FromRole="OdaTur" ToRole="Oda" />
+        </EntityType>
+        <EntityType Name="Rezervasyon">
+          <Key>
+            <PropertyRef Name="rezervID" />
+          </Key>
+          <Property Name="rezervID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteriID" Type="Int32" />
+          <Property Name="odaNo" Type="Int32" />
+          <Property Name="rezervTarih" Type="DateTime" Precision="0" />
+          <Property Name="gunSayi" Type="Int32" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK_Rezervasyon_Musteri" FromRole="Rezervasyon" ToRole="Musteri" />
+          <NavigationProperty Name="Oda" Relationship="Self.FK_Rezervasyon_Oda" FromRole="Rezervasyon" ToRole="Oda" />
+        </EntityType>
+        <EntityType Name="Slider">
+          <Key>
+            <PropertyRef Name="sliderID" />
+          </Key>
+          <Property Name="sliderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sliderFoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="sliderText" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="baslangicTarihi" Type="DateTime" Precision="3" />
+          <Property Name="bitisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="sliderBaslik" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Bilgilendirme_OdaTur">
+          <End Role="OdaTur" Type="Self.OdaTur" Multiplicity="0..1" />
+          <End Role="Bilgilendirme" Type="Self.Bilgilendirme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdaTur">
+              <PropertyRef Name="turID" />
+            </Principal>
+            <Dependent Role="Bilgilendirme">
+              <PropertyRef Name="odaTur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rezervasyon_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1" />
+          <End Role="Rezervasyon" Type="Self.Rezervasyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriID" />
+            </Principal>
+            <Dependent Role="Rezervasyon">
+              <PropertyRef Name="musteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oda_OdaTur">
+          <End Role="OdaTur" Type="Self.OdaTur" Multiplicity="0..1" />
+          <End Role="Oda" Type="Self.Oda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdaTur">
+              <PropertyRef Name="turID" />
+            </Principal>
+            <Dependent Role="Oda">
+              <PropertyRef Name="odaTur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rezervasyon_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1" />
+          <End Role="Rezervasyon" Type="Self.Rezervasyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaNo" />
+            </Principal>
+            <Dependent Role="Rezervasyon">
+              <PropertyRef Name="odaNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OtelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bilgilendirme" EntityType="Self.Bilgilendirme" />
+          <EntitySet Name="Duyurular" EntityType="Self.Duyurular" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+          <EntitySet Name="MusteriGorus" EntityType="Self.MusteriGorus" />
+          <EntitySet Name="Oda" EntityType="Self.Oda" />
+          <EntitySet Name="OdaTur" EntityType="Self.OdaTur" />
+          <EntitySet Name="Rezervasyon" EntityType="Self.Rezervasyon" />
+          <EntitySet Name="Slider" EntityType="Self.Slider" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Bilgilendirme_OdaTur" Association="Self.FK_Bilgilendirme_OdaTur">
+            <End Role="OdaTur" EntitySet="OdaTur" />
+            <End Role="Bilgilendirme" EntitySet="Bilgilendirme" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rezervasyon_Musteri" Association="Self.FK_Rezervasyon_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oda_OdaTur" Association="Self.FK_Oda_OdaTur">
+            <End Role="OdaTur" EntitySet="OdaTur" />
+            <End Role="Oda" EntitySet="Oda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rezervasyon_Oda" Association="Self.FK_Rezervasyon_Oda">
+            <End Role="Oda" EntitySet="Oda" />
+            <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OtelModelStoreContainer" CdmEntityContainer="OtelEntities">
+          <EntitySetMapping Name="Bilgilendirme">
+            <EntityTypeMapping TypeName="OtelModel.Bilgilendirme">
+              <MappingFragment StoreEntitySet="Bilgilendirme">
+                <ScalarProperty Name="mesaj" ColumnName="mesaj" />
+                <ScalarProperty Name="ePosta" ColumnName="ePosta" />
+                <ScalarProperty Name="bilgiID" ColumnName="bilgiID" />
+                <ScalarProperty Name="adSoyad" ColumnName="adSoyad" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="odaTur" ColumnName="odaTur" />
+                <ScalarProperty Name="istekTarihi" ColumnName="istekTarihi" />
+                <ScalarProperty Name="cevap" ColumnName="cevap" />
+                <ScalarProperty Name="cevapTarihi" ColumnName="cevapTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Duyurular">
+            <EntityTypeMapping TypeName="OtelModel.Duyurular">
+              <MappingFragment StoreEntitySet="Duyurular">
+                <ScalarProperty Name="duyuruID" ColumnName="duyuruID" />
+                <ScalarProperty Name="duyuruBaslik" ColumnName="duyuruBaslik" />
+                <ScalarProperty Name="duyuruDetay" ColumnName="duyuruDetay" />
+                <ScalarProperty Name="duyuruTarih" ColumnName="duyuruTarih" />
+                <ScalarProperty Name="yayinTarih" ColumnName="yayinTarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musteri">
+            <EntityTypeMapping TypeName="OtelModel.Musteri">
+              <MappingFragment StoreEntitySet="Musteri">
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+                <ScalarProperty Name="musteriAdi" ColumnName="musteriAdi" />
+                <ScalarProperty Name="musteriSoyadi" ColumnName="musteriSoyadi" />
+                <ScalarProperty Name="dogumTarihi" ColumnName="dogumTarihi" />
+                <ScalarProperty Name="cinsiyet" ColumnName="cinsiyet" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="ePosta" ColumnName="ePosta" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusteriGorus">
+            <EntityTypeMapping TypeName="OtelModel.MusteriGorus">
+              <MappingFragment StoreEntitySet="MusteriGorus">
+                <ScalarProperty Name="gorusID" ColumnName="gorusID" />
+                <ScalarProperty Name="adSoyad" ColumnName="adSoyad" />
+                <ScalarProperty Name="gorus" ColumnName="gorus" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Oda">
+            <EntityTypeMapping TypeName="OtelModel.Oda">
+              <MappingFragment StoreEntitySet="Oda">
+                <ScalarProperty Name="odaNo" ColumnName="odaNo" />
+                <ScalarProperty Name="odaTur" ColumnName="odaTur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OdaTur">
+            <EntityTypeMapping TypeName="OtelModel.OdaTur">
+              <MappingFragment StoreEntitySet="OdaTur">
+                <ScalarProperty Name="turID" ColumnName="turID" />
+                <ScalarProperty Name="turAdi" ColumnName="turAdi" />
+                <ScalarProperty Name="turAdet" ColumnName="turAdet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rezervasyon">
+            <EntityTypeMapping TypeName="OtelModel.Rezervasyon">
+              <MappingFragment StoreEntitySet="Rezervasyon">
+                <ScalarProperty Name="rezervID" ColumnName="rezervID" />
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+                <ScalarProperty Name="odaNo" ColumnName="odaNo" />
+                <ScalarProperty Name="rezervTarih" ColumnName="rezervTarih" />
+                <ScalarProperty Name="gunSayi" ColumnName="gunSayi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Slider">
+            <EntityTypeMapping TypeName="OtelModel.Slider">
+              <MappingFragment StoreEntitySet="Slider">
+                <ScalarProperty Name="sliderBaslik" ColumnName="sliderBaslik" />
+                <ScalarProperty Name="sliderID" ColumnName="sliderID" />
+                <ScalarProperty Name="sliderFoto" ColumnName="sliderFoto" />
+                <ScalarProperty Name="sliderText" ColumnName="sliderText" />
+                <ScalarProperty Name="baslangicTarihi" ColumnName="baslangicTarihi" />
+                <ScalarProperty Name="bitisTarihi" ColumnName="bitisTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="OtelModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

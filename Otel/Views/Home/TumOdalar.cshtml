@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Oda Listesi";
+}
+
+<!-- Parallax Effect -->
+<script type="text/javascript">$(document).ready(function(){$('#parallax-pagetitle').parallax("50%", -0.55);});</script>
+
+<section class="parallax-effect">
+    <div id="parallax-pagetitle" style="background-image: url(./images/parallax/1900x911.gif);">
+        <div class="color-overlay">
+            <!-- Page title -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ol class="breadcrumb">
+                            <li>@Html.ActionLink("Anasayfa", "Index", "Home")</li>
+                            <li class="active">Tüm Odalar</li>
+                        </ol>
+                        <h1>Odalar</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Filter  / bu kısımda aşağıdaki col-sm-4'ün yanındaki kelimelere göre listeleme yapar(.Tek, .suit gibi kriterler) -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="nav nav-pills" id="filters">
+                <li class="active"><a href="#" data-filter="*">Tüm Odalar</a></li>
+                <li><a href="#" data-filter=".tek">Tek Kişilik Odalar</a></li>
+                <li><a href="#" data-filter=".cift">Çift Kişilik Odalar</a></li>
+                <li><a href="#" data-filter=".suit">Suit Odalar</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Rooms -->
+<section class="rooms mt100">
+    <div class="container">
+        <div class="row room-list fadeIn appear">
+            <!-- Room Single-->
+            @Html.Partial("_TekKisilikOdaPartial")
+            <!-- Room Double -->
+            @Html.Partial("_CiftKisilikOdaPartial")
+            <!-- Room Suit -->
+            @Html.Partial("_SuitOdaPartial")
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,59 @@
+﻿<!-- AnaSayfa Müşteri Yorumları ve Otel hakkında bilgiler Partial View Görüntüsü oluşumu -->
+
+<div class="container">
+    <div class="row">
+        <!-- Testimonials -->
+        <section class="testimonials mt100">
+            <div class="col-md-6">
+                <h2 class="lined-heading bounceInLeft appear" data-start="0"><span>Misafirlerimizin Deneyimleri</span></h2>
+                <div id="owl-reviews" class="owl-carousel">
+
+                    @foreach (var gorusler in Model.gorusler)
+                    {
+                        <div id="@gorusler.gorusID" class="item">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 col-sm-2 col-xs-12"> <img src="~/images/reviews/100x100.gif" alt="Review 1" class="img-circle" /></div>
+                                <div class="col-lg-9 col-md-8 col-sm-10 col-xs-12">
+                                    <div class="text-balloon">@gorusler.gorus <span>@gorusler.adSoyad,  @gorusler.tarih.ToShortDateString()</span> </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="about mt100">
+            <div class="col-md-6">
+                <h2 class="lined-heading bounceInRight appear" data-start="800"><span>Hotel Hakkında</span></h2>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#hotel" data-toggle="tab">Otel</a></li>
+                    <li><a href="#events" data-toggle="tab">Aktiviteler</a></li>
+                    @*<li><a href="#kids" data-toggle="tab">Kids</a></li>
+                        <li><a href="#business" data-toggle="tab">Business</a></li>*@
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="hotel">
+                        <p>
+                            SAYDAM HOTEL' İN BÜYÜLÜ ATMOSFERİNDE TATİL KEYFİ
+
+                            Dört mevsim sizinleyiz! 10.000 metrekarelik bir alanına kurulu  Konforlu odalar, hijyenik havuzlar, eğlenceli havuz oyunları, müzik dolu gece eğlenceleri, lezzetli yiyecekler… Hepsi ve daha fazlası SAYDAM Hotel' de sizleri bekliyor.
+                        </p>
+                        <p>
+                            <img src="~/images/tab/197x147.gif" alt="food" class="pull-right"> Dinlenin, düşleyin, hissedin! Lezzetli yiyeceklerin benzersiz dünyası Deniz, kum, güneş… Çocuklarımızı titizlikle ağırlıyoruz
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="events">Bir tatili unutulmaz yapan şeylerdendir; dans, müzik ve eğlence… Tüm misafirlerimizi gülümsetmek, eğlendirmek ve keyifle vakit geçirmelerini sağlamak için otelimiz bünyesinde farklı aktivite olanakları sunuyoruz. Alanında uzman animasyon ekibimizle birlikte spor aktiviteleri, havuz oyunları ve yarışmalara katılabilirsiniz. Ayrıca amfi tiyatroda düzenlenen gösteri, şov ve skeçlere katılarak ailenizle ve sevdiklerinizle keyifli anlar yaşayabilirsiniz. Gecenin ilerleyen saatlerinde ise otelimizin diskosu büyülü atmosferi ve hareketli müzikleriyle sizi eğlendirmeye hazır!</div>
+                    @*<div class="tab-pane fade" id="kids">Aa vestibulum risus mattis vitae. Aliquam vitae varius elit, non facilisis massa. Vestibulum luctus diam mollis gravida bibendum. Aliquam mattis velit dolor, sit amet semper erat auctor vel. Integer auctor in dui ac vehicula. Integer fermentum nunc ut arcu feugiat, nec placerat nunc tincidunt. Pellentesque in massa eu augue placerat cursus sed quis magna.</div>
+                        <div class="tab-pane fade" id="business">...</div>*@
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

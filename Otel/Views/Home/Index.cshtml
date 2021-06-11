@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Anasayfa";
+}
+
+@model Otel.Controllers.AnaSayfaDTO
+
+@Html.Partial("AnaSayfaSliderPartial")
+
+@Html.Partial("AnaSayfaRezervasyonPartial")
+
+<!-- ODALAR -->
+<section class="rooms mt50">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="lined-heading"><span> ODALAR</span></h2>
+            </div>
+            <!-- Room Single-->
+            @Html.Partial("_TekKisilikOdaPartial")
+            <!-- Room Double -->
+            @Html.Partial("_CiftKisilikOdaPartial")
+            <!-- Room Suit -->
+            @Html.Partial("_SuitOdaPartial")
+        </div>
+    </div>
+</section>
+
+@Html.Partial("AnaSayfaHizmetlerimizPartial")
+
+<!-- AnaSayfa SAYDAM OTEL Effect -->
+<script type="text/javascript">$(document).ready(function () { $('#parallax-image').parallax("50%", -0.25); });</script>
+
+<section class="parallax-effect mt100">
+    <div id="parallax-image" style="background-image: url(~/images/parallax/1900x911.gif)">
+        <div class="color-overlay fadeIn appear" data-start="400">
+            <div class="container">
+                <div class="content">
+                    <h3 class="text-center"><i class="fa fa fa-star-o"></i> SAYDAM OTEL <i class="fa fa fa-star-o"></i></h3>
+                    <p class="text-center">
+                        KONFORLU TATİL AYRICALIĞI BİZİMLE YAŞAYIN KENDİNİZİ EVİNİZDE HİSSEDEBİLECEĞİNİZ TEK YER
+                        <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@Html.Partial("AnaSayfaGaleriPartial")
+
+@Html.Partial("AnaSayfaMisafirYorumlarVeOtelHakkindaPartial")

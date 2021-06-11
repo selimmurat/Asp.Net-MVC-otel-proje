@@ -1,0 +1,207 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - SAYDAM Otel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="content-type" content="image/svg+xml" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device,initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/4.7.0/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    @*@Styles.Render("~/css")*@
+    <link rel="stylesheet" href="~/css/animate.css">
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/css/owl.theme.css">
+    <link rel="stylesheet" href="~/css/prettyPhoto.css">
+    <link rel="stylesheet" href="~/css/smoothness/jquery-ui-1.10.4.custom.min.css">
+    <link rel="stylesheet" href="~/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="~/css/theme.css">
+    <link rel="stylesheet" href="~/css/colors/turquoise.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600,700">
+
+    <!-- Javascripts -->
+    @*Scripts.Render("~/bundles/jquery")*@
+    <script type="text/javascript" src="~/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap-hover-dropdown.min.js"></script>
+    <script type="text/javascript" src="~/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.parallax-1.1.3.js"></script>
+    <script type="text/javascript" src="~/js/jquery.nicescroll.js"></script>
+    <script type="text/javascript" src="~/js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="~/js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.forms.js"></script>
+    <script type="text/javascript" src="~/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="~/js/waypoints.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.gmap.min.js"></script>
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+    @Scripts.Render("~/bundles/jquery2")
+    @*<script type="text/javascript" src="~/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+        <script type="text/javascript" src="~/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+        <script type="text/javascript" src="~/js/custom.js"></script>*@
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+
+    <!-- Top header -->
+    <div id="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="th-text pull-left">
+                        <div class="th-item"> <a href="#"><i class="fa fa-phone"></i> +90 (549) 263-7383</a> </div>
+                        <div class="th-item"> <a href="#"><i class="fa fa-envelope"></i> info@saydamhotel.com </a></div>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="th-text pull-right">
+                        <div class="th-item">
+                            <div class="btn-group">
+                                <button class="btn btn-default btn-xs dropdown-toggle js-activated" type="button" data-toggle="dropdown"> English <span class="caret"></span> </button>
+                                <ul class="dropdown-menu">
+                                    <li> <a href="#">ENGLISH</a> </li>
+                                    <li> <a href="#">TÜRKÇE</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="th-item">
+                            <div class="social-icons"> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-youtube-play"></i></a> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <!-- Navigation -->
+        <div class="navbar yamm navbar-default" id="sticky">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" data-toggle="collapse" data-target="#navbar-collapse-grid" class="navbar-toggle"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a href="@Url.Action("Index")" class=" navbar-brand">
+                        <!-- Logo -->
+                        <div id="logo"> <img id="default-logo" src="~/images/saydamhotel1.png" alt="Saydam Hotel" style="height:110px;"> <img id="retina-logo" src="~/images/saydamhotel1.png" alt="Saydam Hotel" style="height:84px;"> </div>
+                    </a>
+                </div>
+                <div id=" navbar-collapse-grid" class=" navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown active">
+                            @Html.ActionLink("Anasayfa", "Index", "Home")
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class=" dropdown-toggle js-activated"> Odalar </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Tüm Odalar", "TumOdalar", "Home")</li>
+                                </i>
+                                <li>@Html.ActionLink("Tek Kişilik Odalar", "TekKisilikOda", "Home")</li>
+                                <li>@Html.ActionLink("Çift Kişilik Odalar", "CiftKisilikOda", "Home")</li>
+                                <li>@Html.ActionLink("Suit Oda", "SuitRoom", "Home")</li>
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("Galeri", "Galeri", "Home")</li>
+                        <li>@Html.ActionLink("iletişim", "iletisim", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    @RenderBody()
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+                    <h4>About Starhotel</h4>
+                    <p>
+                        Suspendisse sed sollicitudin nisl, at dignissim libero. Sed porta tincidunt ipsum, vel volutpat. <br>
+                        <br>
+                        Nunc ut fringilla urna. Cras vel adipiscing ipsum. Integer dignissim nisl eu lacus interdum facilisis. Aliquam erat volutpat. Nulla semper vitae felis vitae dapibus.
+                    </p>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <h4>Recieve our newsletter</h4>
+                    <p>Suspendisse sed sollicitudin nisl, at dignissim libero. Sed porta tincidunt ipsum, vel volutpa!</p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input name="newsletter" type="text" id="newsletter" value="" class="form-control" placeholder="Please enter your E-mailaddress">
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-black btn-block">Submit</button>
+                    </form>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <h4>From our blog</h4>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                Amazing post with all the goodies<br>
+                                January 23, 2014
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Integer dignissim nisl eu lacus<br>
+                                January 21, 2014
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Aliquam erat volutpat. Nulla semper<br>
+                                January 14, 2014
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <h4>Address</h4>
+                    <address>
+                        <strong>Twitter, Inc.</strong><br>
+                        795 Folsom Ave, Suite 600<br>
+                        San Francisco, CA 94107<br>
+                        <abbr title="Phone">P:</abbr> <a href="#">(123) 456-7890</a><br>
+                        <abbr title="Email">E:</abbr> <a href="#">mail@example.com</a><br>
+                        <abbr title="Website">W:</abbr> <a href="#">www.slashdown.nl</a><br>
+                    </address>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6"> &copy; 2014 Starhotel All Rights Reserved </div>
+                    <div class="col-xs-6 text-right">
+                        <ul>
+                            <li><a href="contact-01.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Go-top Button -->
+    <div id="go-top"><i class="fa fa-angle-up fa-2x"></i></div>
+
+</body>
+</html>
+

@@ -1,0 +1,85 @@
+﻿<!-- AnaSayfadaki Slider Altındaki Rezervasyon Partial view ile anasayfaya ekleme  -->
+
+<section id="reservation-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-inline reservation-horizontal clearfix" role="form" method="post" action="php/reservation.php" name="reservationform" id="reservationform">
+                    <!-- Error message -->
+                    <div id="message"></div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="email" accesskey="E">E-mail</label>
+                                <input name="email" type="text" id="email" value="" class="form-control" placeholder="Lütfen E-mail adresinizi giriniz." />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="room">Oda Türü Seçiniz</label>
+                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Oda Tipleri"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                <select class="form-control" name="room" id="room">
+                                    <option selected="selected" disabled="disabled">Lütfen bir oda seçiniz</option>
+                                    <option value="Single">Tek Kişilik Oda</option>
+                                    <option value="Double">Çift Kişilik Oda</option>
+                                    <option value="Deluxe">Lüks Oda</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="checkin">Giriş Tarihi</label>
+                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Odaya Giriş Saati 11:00"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                <i class="fa fa-calendar infield"></i>
+                                <input name="checkin" type="text" id="checkin" value="" class="form-control" placeholder="Giriş Tarihi seçiniz" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="checkout">Çıkış Tarihi</label>
+                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Odadan Çıkış Saati 12:00"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                <i class="fa fa-calendar infield"></i>
+                                <input name="checkout" type="text" id="checkout" value="" class="form-control" placeholder="Çıkış tarihi seçiniz" />
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <div class="guests-select">
+                                    <label>Misafir</label>
+                                    <i class="fa fa-user infield"></i>
+                                    <div class="total form-control" id="test">1</div>
+                                    <div class="guests">
+                                        <div class="form-group adults">
+                                            <label for="adults">Yetişkin</label>
+                                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="+18 yaş ve sonrası"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                            <select name="adults" id="adults" class="form-control">
+                                                <option value="1">1 Yetkişkin</option>
+                                                <option value="2">2 Yetkişkin</option>
+                                                <option value="3">3 Yetkişkin</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group children">
+                                            <label for="children">Çocuk</label>
+                                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="0 ile 18 yaş arası"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                            <select name="children" id="children" class="form-control">
+                                                <option value="0">0 Çocuk</option>
+                                                <option value="1">1 Çocuk</option>
+                                                <option value="2">2 Çocuk</option>
+                                                <option value="3">3 Çocuk</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-default button-save btn-block">Kaydet</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary btn-block">Rezervasyon Yap</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "İletişim";
+}
+@using Otel.Controllers
+@model Otel.Controllers.AnaSayfaDTO
+<!-- GMap -->
+<div id="map">
+    <p>This will be replaced with the Google Map.</p>
+</div>
+<div class="container">
+    <div class="row">
+
+        <!-- İletişim formu gönderme -->
+        <section id="contact-form" class="mt50">
+            <div class="col-md-8">
+                <h2 class="lined-heading"><span>Görüş ve Önerilerinizi Bize Bildirebilirsiniz</span></h2>
+                <p></p>
+                @using (Html.BeginForm("BilgiIstekFormuGonder", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    <form class="clearfix mt50" role="form" method="post" action="php/contact.php" name="contactform" id="contactform">
+                        <!-- Error message -->
+                        <div id="message"></div>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name" accesskey="U"><span class="required">*</span> İsim Soyİsim(Gerekli)</label>
+                                    @Html.TextBoxFor(m => m.bilgiformu.adSoyad, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email" accesskey="E"><span class="required">*</span> E-mail</label>
+                                    @Html.TextBoxFor(m => m.bilgiformu.ePosta, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefon">Telefon (İstek Halinde)</label>
+                            @Html.TextBoxFor(m => m.bilgiformu.telefon, "Zorunlu alan değil istek halinde yazabilirsiniz.", new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" accesskey="S">Subject</label>
+                            <select name="subject" id="subject" class="form-control">
+                                <option value="Personel Şikayet">Personel Şikayet</option>
+                                <option value="Oda Hakkında Şikayet">Oda Hakkında Şikayet</option>
+                                <option value="Öneri">Öneri</option>
+                                <option value="Bilgi Talep">Bilgi Talep</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Oda">Oda Seçimi</label>                            
+                            @Html.DropDownListFor(m=>m.bilgiformu.odaTur, (IEnumerable<SelectListItem>)ViewBag.TercihOda,"Seçiniz", new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="comments" accesskey="C"><span class="required">*</span> Your message</label>
+                            @Html.TextAreaFor(m => m.bilgiformu.mesaj, new { @class = "form-control", rows = "7" })
+                        </div>
+                        <button type="submit" class="btn  btn-lg btn-primary">Gönder</button>
+                        <label>@TempData["Mesaj"]</label>
+
+                    </form>
+                }
+            </div>
+        </section>
+
+        <!-- Contact details -->
+        <section class="contact-details mt50">
+            <div class="col-md-4">
+                <h2 class="lined-heading"><span>Address</span></h2>
+                <a href="~/images/contact/948x632.gif" data-rel="prettyPhoto"><img src="~/images/contact/361x235.gif" alt="Image 1" class="img-thumbnail img-responsive"></a>
+                <address class="mt50">
+                    <strong>Starhotel</strong><br>
+                    795 Las Palmas<br>
+                    Spain, CA 94107<br>
+                    <abbr title="Phone">P:</abbr> <a href="#">(123) 456-7890</a><br>
+                    <abbr title="Email">E:</abbr> <a href="#">mail@example.com</a><br>
+                    <abbr title="Website">W:</abbr> <a href="#">www.slashdown.nl</a><br>
+                </address>
+                <h2 class="lined-heading mt50"><span>Social</span></h2>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="box-icon">
+                            <a href="#">
+                                <div class="circle"><i class="fa fa-facebook fa-lg"></i></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="box-icon">
+                            <a href="#">
+                                <div class="circle"><i class="fa fa-twitter fa-lg"></i></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="box-icon">
+                            <a href="#">
+                                <div class="circle"><i class="fa fa-linkedin fa-lg"></i></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Call To Action -->
+<section id="call-to-action" class="mt100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <h2>This is a Call to Action that you can use for all purposes!</h2>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <a href="elements.html" class="btn btn-default btn-lg pull-right">More features</a>
+            </div>
+        </div>
+    </div>
+</section>

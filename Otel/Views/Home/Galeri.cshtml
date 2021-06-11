@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Gallery";
+}
+
+<!-- Parallax Effect -->
+<script type="text/javascript">$(document).ready(function(){$('#parallax-pagetitle').parallax("50%", -0.55);});</script>
+
+<section class="parallax-effect">
+    <div id="parallax-pagetitle" style="background-image: url(~/images/parallax/1900x911.gif);">
+        <div class="color-overlay">
+            <!-- Page title -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ol class="breadcrumb">
+                            <li><a href="/">AnaSayfa</a></li>
+                            <li class="active">Galeri</li>
+                        </ol>
+                        <h1>Tesisimizin Fotografları</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Filter -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="nav nav-pills" id="filters">
+                <li class="active"><a href="#" data-filter="*">Tüm Resimler</a></li>
+                <li><a href="#" data-filter=".odalar">Odalar</a></li>
+                <li><a href="#" data-filter=".restaurant">Restaurant</a></li>
+                <li><a href="#" data-filter=".hamamSpaHavuz">Hamam&SPA&Havuz</a></li>
+                <li><a href="#" data-filter=".aktiviteler">Aktiviteler</a></li>
+                <li><a href="#" data-filter=".lobi">Lobi</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("GaleriResimPartial")
+
+<!-- Call To Action -->
+<section id="call-to-action" class="mt100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <h2>This is a Call to Action that you can use for all purposes!</h2>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <a href="elements.html" class="btn btn-default btn-lg pull-right">More features</a>
+            </div>
+        </div>
+    </div>
+</section>
